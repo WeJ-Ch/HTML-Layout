@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <style>
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+        }
+
+        .box2 {
+            resize: both;
+            overflow: auto;
+            background-color: lightskyblue;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        p {
+            flex: 0 1 150px;
+            margin: 5px;
+            background-color: lightyellow;
+            color: #cbd5e1;
+        }
+    
+        .navbar {
+        background-color: #333;
+        overflow: hidden;
+        padding: 10px 0;
+        margin-top: 30px;
+        }
+
+        .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+
+        .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+        .navbar a.active {
+        background-color: #4CAF50;
+        color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+  <div class="box2">
+    <p>Crezco hacia abajo y tengo un ancho máximo de 150px [150 x 215]</p>
+    <p>Crezco hacia abajo y tengo un ancho máximo de 150px [150 x 215]</p>
+    <p>Crezco hacia abajo y tengo un ancho máximo de 150px [150 x 215]</p>
+</div>
+
+<script>
+    function updateSizeText(element, height) {
+        element.innerText = element.innerText.replace(/\[150 x \d+\]/, `[150 x ${height}]`);
+    }
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const height = Math.round(entry.contentRect.height);
+            entry.target.querySelectorAll('p').forEach(p => updateSizeText(p, height));
+        }
+    });
+
+    const box2 = document.querySelector('.box2');
+    resizeObserver.observe(box2);
+</script>
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="ejercicio 1.html" class="active">Ejercicio 1</a>
+    <a href="ejercicio 2.html" class="active">Ejercicio 2</a>
+    <a href="ejercicio 4.html" class="active">Ejercicio 4</a>
+    <a href="ejercicio 5.html" class="active">Ejercicio 5</a>
+    <a href="ejercicio 6.html" class="active">Ejercicio 6</a>
+    <a href="ejercicio 7.html" class="active">Ejercicio 7</a>
+    <a href="ejercicio 8.html" class="active">Ejercicio 8</a>
+  </div>
+</body>
+</html>
